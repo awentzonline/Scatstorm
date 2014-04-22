@@ -3,8 +3,8 @@ using System.Collections;
 
 public class CentrifugalForceScript : MonoBehaviour {
 
-	const float FORCE_CONSTANT = 7.5f;
-	const float INWARD_FORCE = .1f;
+	const float FORCE_CONSTANT = 200f;
+	const float INWARD_FORCE = 5f;
 	const float MAX_X = 10f;
 	const float MAX_Z = 10f;
 
@@ -18,7 +18,7 @@ public class CentrifugalForceScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
 		float max_d = Mathf.Sqrt(MAX_X*MAX_X + MAX_Z*MAX_Z);
 
