@@ -3,12 +3,13 @@ using System.Collections;
 
 public class CentrifugalForceScript : MonoBehaviour {
 
-	const float FORCE_CONSTANT = 200f;
-	const float INWARD_FORCE = 5f;
-	const float MAX_X = 10f;
-	const float MAX_Z = 10f;
+	const float FORCE_CONSTANT = 35f;
+	const float INWARD_FORCE = 10f;
+	const float MAX_X = 35f;
+	const float MAX_Z = 35f;
 
-	public float distance;
+	float distance;
+
 	public Vector3 target;
 	public Vector3 normalv;
 
@@ -34,7 +35,8 @@ public class CentrifugalForceScript : MonoBehaviour {
 		normalv = new Vector3(-target.z, 0, target.x);
 		normalv = Vector3.Normalize(normalv);
 
-		float factor = Mathf.Exp(-1 * (distance * distance) / (max_d * max_d));
+		float factor = Mathf.Exp(distance / max_d);
+		factor -= 1;
 		normalv *= factor * FORCE_CONSTANT;
 
 		target *= -1;

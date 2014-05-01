@@ -17,7 +17,7 @@ public class PoopDroppingScript : MonoBehaviour {
 	float interval_wait_time = 0f;
 	const float RANDOM_VALUE_SWITCH = 0.1f;
 
-	const float STARTING_POOP_HEIGHT = 100f;
+	const float STARTING_POOP_HEIGHT = 30f;
 
 	public GameObject poop1;
 	public GameObject poop2;
