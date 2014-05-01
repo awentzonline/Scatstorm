@@ -45,12 +45,7 @@ public class ShipControlScript2 : MonoBehaviour {
 				cannon.rigidbody.WakeUp();
 				cannon.renderer.enabled = true;
 
-
-				cannon.rigidbody.AddForce(-transform.forward * FORWARD_FORCE, ForceMode.VelocityChange); 
-				cannon.rigidbody.AddForce(transform.up * UP_FORCE, ForceMode.VelocityChange);
-
-				//cannon.rigidbody.AddForce(Vector3.right.x * FORWARD_FORCE , Vector3.right.y * UP_FORCE, Vector3.right.z * FORWARD_FORCE, ForceMode.Force);
-
+				cannon.rigidbody.AddForce(transform.forward * FORWARD_FORCE, ForceMode.VelocityChange); 
 			}
 			else {
 				Debug.Log ("CANNON ATTACK IS STILL PROCESSING");
@@ -65,9 +60,7 @@ public class ShipControlScript2 : MonoBehaviour {
 				cannon.rigidbody.WakeUp();
 				cannon.renderer.enabled = true;
 
-				cannon.rigidbody.AddForce(transform.forward * FORWARD_FORCE, ForceMode.VelocityChange);
-				cannon.rigidbody.AddForce(transform.up * UP_FORCE, ForceMode.VelocityChange);
-				//cannon.rigidbody.AddForce(Vector3.left.x * FORWARD_FORCE , Vector3.left.y * UP_FORCE, Vector3.left.z * FORWARD_FORCE, ForceMode.Force);
+				cannon.rigidbody.AddForce(-transform.forward * FORWARD_FORCE, ForceMode.VelocityChange);
 
 			}
 			else {
