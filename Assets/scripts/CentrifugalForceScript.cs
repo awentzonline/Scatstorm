@@ -3,8 +3,8 @@ using System.Collections;
 
 public class CentrifugalForceScript : MonoBehaviour {
 
-	const float FORCE_CONSTANT = 35f;
-	const float INWARD_FORCE = 10f;
+	const float FORCE_CONSTANT = 30f;
+	const float INWARD_FORCE = 5f;
 	const float MAX_X = 35f;
 	const float MAX_Z = 35f;
 
