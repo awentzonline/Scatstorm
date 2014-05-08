@@ -13,17 +13,23 @@ public class HitLandingScript : MonoBehaviour {
 	const float COLLISION_DISTANCE = 8f;
 
 	const float DEFAULT_POOP_HEIGHT = -20f;
+	
+	AudioSource asrc;
 
 	// Use this for initialization
 	void Start () {
 		rotation_time = ROTATE_FORCE_TIME;
+		
+		asrc = GetComponent(typeof(AudioSource)) as AudioSource;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
 		if (Vector3.Distance(opponent.transform.position, transform.position) < COLLISION_DISTANCE) {
-
+			//play sound
+			asrc.Play();
+			
 			if (!hit) {
 
 				// HANDLE HPs HERE
@@ -43,7 +49,7 @@ public class HitLandingScript : MonoBehaviour {
 	void HandleHitNotice(Transform ship) {
 
 		if (!hit) return;
-
+		
 		float time = Time.deltaTime;
 		rotation_time -= time;
 

@@ -14,11 +14,15 @@ public class PoopDropCollisionScript : MonoBehaviour {
 	const float ROTATION_FORCE_TIME = 1.5f;
 	const float ROTATION_STRENGTH = 6f;
 	public float rotation_time;
+	
+	AudioSource asrc;
 
 	// Use this for initialization
 	void Start () {
 
 		rotation_time = ROTATION_FORCE_TIME;
+		
+		asrc = GetComponent(typeof(AudioSource)) as AudioSource;
 	
 	}
 	
@@ -31,7 +35,9 @@ public class PoopDropCollisionScript : MonoBehaviour {
 		if (dist1 <= dist2) {
 
 			if (dist1 < COLLISION_DISTANCE) {
-
+				//play sound
+				asrc.Play();
+				
 				shipnum = 1;
 				transform.position = new Vector3(0, 404f, 0);
 				renderer.enabled = false;
@@ -44,7 +50,9 @@ public class PoopDropCollisionScript : MonoBehaviour {
 		else {
 
 			if (dist2 < COLLISION_DISTANCE) {
-
+				//play sound
+				asrc.Play();
+				
 				shipnum = 2;
 				transform.position = new Vector3(0, 404f, 0);
 				renderer.enabled = false;
@@ -78,7 +86,7 @@ public class PoopDropCollisionScript : MonoBehaviour {
 	void HandleHitNotice(Transform ship) {
 
 		if (!hit) return;
-
+		
 		float time = Time.deltaTime;
 		rotation_time -= time;
 

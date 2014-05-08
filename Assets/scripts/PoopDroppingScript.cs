@@ -17,7 +17,7 @@ public class PoopDroppingScript : MonoBehaviour {
 	float interval_wait_time = 0f;
 	const float RANDOM_VALUE_SWITCH = 0.1f;
 
-	const float STARTING_POOP_HEIGHT = 30f;
+	const float STARTING_POOP_HEIGHT = 50f;
 
 	public GameObject poop1;
 	public GameObject poop2;
@@ -118,7 +118,7 @@ public class PoopDroppingScript : MonoBehaviour {
 				flash_lengths[i] = 0f;
 				blink_lengths[i] = 0f;
 				obj.renderer.enabled = true;
-				obj.collider.enabled = true;
+				obj.collider.enabled = false;
 				obj.rigidbody.WakeUp();
 				states[i] = "active";
 			}

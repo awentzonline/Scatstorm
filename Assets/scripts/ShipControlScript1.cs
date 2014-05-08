@@ -8,7 +8,7 @@ public class ShipControlScript1 : MonoBehaviour {
 
 	//Cannon 
 	const float UP_FORCE = 12f;
-	const float FORWARD_FORCE = 15f;
+	const float FORWARD_FORCE = 65f;
 
 	//Catapult
 	const float CATAPULT_UP_FORCE = 20f;
@@ -19,6 +19,8 @@ public class ShipControlScript1 : MonoBehaviour {
 
 	//Left/Right
 	const float ROTATION_FORCE = 1f;
+	
+	AudioSource asrc;
 	
 
 	public GameObject cannon;
@@ -33,6 +35,8 @@ public class ShipControlScript1 : MonoBehaviour {
 		catapult.rigidbody.Sleep();
 		//catapult.renderer.enabled = false;
 
+		asrc = GetComponent(typeof(AudioSource)) as AudioSource;
+
 	}
 
 
@@ -43,14 +47,17 @@ public class ShipControlScript1 : MonoBehaviour {
 //		const float UP_FORCE = 30f;
 //		const float FORWARD_FORCE = 70f;
 
-		if  (Input.GetKeyDown (KeyCode.O) ){//right side cannon
+		if  (Input.GetKeyDown (KeyCode.U) ){//port side cannon
 			if (checkCannonBallRange()) {
+				//play sound
+				asrc.Play();
+				
 				cannon.rigidbody.velocity = new Vector3(0f,0f,0f);
 				cannon.transform.position = new Vector3 (transform.position.x, transform.position.y + WEAPON_POSITION, transform.position.z);
 				cannon.rigidbody.WakeUp();
 				cannon.renderer.enabled = true;
 				
-				cannon.rigidbody.AddForce(-transform.forward * FORWARD_FORCE, ForceMode.VelocityChange); 
+				cannon.rigidbody.AddForce(transform.right * FORWARD_FORCE, ForceMode.VelocityChange); 
 			}
 			else{
 				Debug.Log ("CANNON ATTACK IS STILL PROCESSING");
@@ -60,14 +67,17 @@ public class ShipControlScript1 : MonoBehaviour {
 
 		
 
-		if  (Input.GetKeyDown (KeyCode.U) ){//left side cannon
+		if  (Input.GetKeyDown (KeyCode.O) ){//starboard side cannon
 			if (checkCannonBallRange()) {
+				//play sound
+				asrc.Play();
+			
 				cannon.rigidbody.velocity = new Vector3(0f,0f,0f);
 				cannon.transform.position = new Vector3 (transform.position.x, transform.position.y + WEAPON_POSITION, transform.position.z);
 				cannon.rigidbody.WakeUp();
 				cannon.renderer.enabled = true;
 
-				cannon.rigidbody.AddForce(transform.forward * FORWARD_FORCE, ForceMode.VelocityChange);
+				cannon.rigidbody.AddForce(-transform.right * FORWARD_FORCE, ForceMode.VelocityChange);
 			}
 			else {
 				Debug.Log ("CANNON ATTACK IS STILL PROCESSING");
@@ -76,7 +86,7 @@ public class ShipControlScript1 : MonoBehaviour {
 
 		}
 
-
+/*
 		if (Input.GetKeyDown (KeyCode.K) ) {//Catapult
 			if (checkCatapultBallRange()) {
 				catapult.rigidbody.velocity = new Vector3(0f,0f,0f);
@@ -95,6 +105,7 @@ public class ShipControlScript1 : MonoBehaviour {
 			}
 
 		}
+*/
 
 		if (Input.GetKey (KeyCode.I) ){ //FORWARD
 			rigidbody.AddForce (-transform.forward * MOVEMENT_FORCE, ForceMode.VelocityChange); 
@@ -126,20 +137,6 @@ public class ShipControlScript1 : MonoBehaviour {
 			return true;
 		}
 
-	}
-
-	bool checkCatapultBallRange () {
-		
-		if (catapult.transform.position.x < Mathf.Abs(32) && catapult.transform.position.y > -6 ) {
-			return false;
-		}
-		else if (catapult.transform.position.z < Mathf.Abs(32) && catapult.transform.position.y >-6 ) {
-			return false;
-		}
-		else {
-			return true;
-		}
-		
 	}
 
 }
