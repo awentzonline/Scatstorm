@@ -42,7 +42,6 @@ public class CenterVortexScript : MonoBehaviour {
 		if (dead_state1 < TWIRL_TIME) { TwirlShip(ship1.transform, 1); }
 		if (dead_state2 < TWIRL_TIME) { TwirlShip(ship2.transform, 2); }
 
-		string textBuffer = "";
 		if (dead_state1 < 0 || dead_state2 <0) {
 			if (dead_state1 <0 ) {
 				Application.LoadLevel ("RedShipWonScene");

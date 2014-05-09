@@ -4,6 +4,7 @@ using System.Collections;
 public class HitLandingScript : MonoBehaviour {
 
 	public GameObject opponent;
+	public Camera cam;
 	bool hit = false;
 
 	const float ROTATE_FORCE_TIME = 1.5f;
@@ -12,7 +13,7 @@ public class HitLandingScript : MonoBehaviour {
 
 	const float COLLISION_DISTANCE = 8f;
 
-	const float DEFAULT_POOP_HEIGHT = -20f;
+	const float DEFAULT_POOP_HEIGHT = 50f;
 	
 	AudioSource asrc;
 
@@ -29,6 +30,7 @@ public class HitLandingScript : MonoBehaviour {
 		if (Vector3.Distance(opponent.transform.position, transform.position) < COLLISION_DISTANCE) {
 			//play sound
 			asrc.Play();
+			StartCoroutine ( ScreenShake() );
 			
 			if (!hit) {
 
@@ -66,5 +68,18 @@ public class HitLandingScript : MonoBehaviour {
 
 		}
 
+	}
+	
+	IEnumerator ScreenShake () {
+		float time = 0.25f;
+		Vector3 originalPosition = cam.transform.position;
+		while ( time > 0f ) {
+			time -= Time.deltaTime;
+			cam.transform.position = originalPosition +
+				cam.transform.up * Mathf.Sin (Time.time * 100f) +
+					cam.transform.right * Mathf.Sin ( Time.time * 113f) ;
+			yield return 0; // wait a frame
+		}
+		cam.transform.position = originalPosition;
 	}
 }

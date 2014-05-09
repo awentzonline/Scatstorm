@@ -5,6 +5,8 @@ public class PoopDropCollisionScript : MonoBehaviour {
 
 	public GameObject ship1;
 	public GameObject ship2;
+	
+	public Camera cam;
 
 	const float COLLISION_DISTANCE = 12f;
 
@@ -37,6 +39,7 @@ public class PoopDropCollisionScript : MonoBehaviour {
 			if (dist1 < COLLISION_DISTANCE) {
 				//play sound
 				asrc.Play();
+				StartCoroutine ( ScreenShake() );
 				
 				shipnum = 1;
 				transform.position = new Vector3(0, 404f, 0);
@@ -52,6 +55,7 @@ public class PoopDropCollisionScript : MonoBehaviour {
 			if (dist2 < COLLISION_DISTANCE) {
 				//play sound
 				asrc.Play();
+				StartCoroutine ( ScreenShake() );
 				
 				shipnum = 2;
 				transform.position = new Vector3(0, 404f, 0);
@@ -105,5 +109,18 @@ public class PoopDropCollisionScript : MonoBehaviour {
 
 		}
 
+	}
+	
+	IEnumerator ScreenShake () {
+		float time = 0.25f;
+		Vector3 originalPosition = cam.transform.position;
+		while ( time > 0f ) {
+			time -= Time.deltaTime;
+			cam.transform.position = originalPosition +
+				cam.transform.up * Mathf.Sin (Time.time * 100f) +
+					cam.transform.right * Mathf.Sin ( Time.time * 113f) ;
+			yield return 0; // wait a frame
+		}
+		cam.transform.position = originalPosition;
 	}
 }
